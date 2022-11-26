@@ -12,7 +12,9 @@ client.connect(function(err){
   console.log("Connected Successfully");
 
   const db = client.db(dbName);
-  client.close();
+
+  insertDocuments(db, function(){
+  client.close();})
 });
 
 const insertDocuments = function(db, callback){
@@ -35,8 +37,6 @@ const insertDocuments = function(db, callback){
     }
   ], function(err, result){
     assert.equal(err, null);
-    assert.equal(3, result.result.n);
-    assert.equal(3, result.ops.length);
     console.log("Inserted 3 documents into the collection");
     callback(result);
   })

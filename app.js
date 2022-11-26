@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 
+
+var db;
+
 mongoose.connect("mongodb://localhost:27017/fruitsDB");
+
+db = mongoose.connection;
+
 
 const fruitSchema = new mongoose.Schema({
   name: String,
@@ -57,7 +63,7 @@ Fruit.find((err, fruits) => {
   if (err) {
     console.log(err);
   } else {
-    mongoose.connection.close();
+    db.close();
     fruits.forEach(e => console.log(e.name));
   }
 })

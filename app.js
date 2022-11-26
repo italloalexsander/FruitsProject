@@ -45,10 +45,19 @@ const orange = new Fruit({
   review: "Actually the best fruit!"
 });
 
-Fruit.insertMany([kiwi, orange], function (err) {
-  if (err) {
+// Fruit.insertMany([kiwi, orange], function (err) {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Operation was succesfull")
+//   }
+// })
+
+Fruit.find((err, fruits)=>{
+  if(err){
     console.log(err);
   } else {
-    console.log("Operation was succesfull")
+    fruits.forEach(e => console.log(e.name));
   }
 })
+

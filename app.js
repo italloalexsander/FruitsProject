@@ -53,10 +53,11 @@ const orange = new Fruit({
 //   }
 // })
 
-Fruit.find((err, fruits)=>{
-  if(err){
+Fruit.find((err, fruits) => {
+  if (err) {
     console.log(err);
   } else {
+    mongoose.connection.close();
     fruits.forEach(e => console.log(e.name));
   }
 })

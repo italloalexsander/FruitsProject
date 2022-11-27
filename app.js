@@ -9,8 +9,15 @@ db = mongoose.connection;
 
 
 const fruitSchema = new mongoose.Schema({
-  name: String,
-  rating: Number,
+  name: {
+    type: String,
+    required: [true, "Need a name"]
+  },
+  rating: {
+    type: Number,
+    min: 0,
+    max: 10
+  },
   review: String
 });
 
@@ -59,12 +66,30 @@ const orange = new Fruit({
 //   }
 // })
 
+const peach = new Fruit({
+  name: "Error",
+  score: 7,
+  review: "I don't like it"
+});
+
+//peach.save();
+
+
+
 Fruit.find((err, fruits) => {
   if (err) {
     console.log(err);
   } else {
     db.close();
     fruits.forEach(e => console.log(e.name));
+  }
+})
+
+Fruit.updateOne({ _id: "6383b1a07ebf2b29699566d9" }, { name: "Peach" }, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Name updated succesfully");
   }
 })
 

@@ -93,3 +93,10 @@ Fruit.updateOne({ _id: "6383b1a07ebf2b29699566d9" }, { name: "Peach" }, (err) =>
   }
 })
 
+Fruit.deleteOne({_id: "6383b1a07ebf2b29699566d9"}, (err)=>{
+  if(err){
+    console.log(err);
+  } else {
+    console.log("Deleted entry succesfully");
+  }
+});

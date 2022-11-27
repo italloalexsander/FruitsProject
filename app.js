@@ -33,18 +33,26 @@ const fruit = new Fruit({
 const personSchema = new mongoose.Schema({
   name: String,
   age: Number,
-  gender: String
+  gender: String,
+  favoriteFruit: fruitSchema
 });
 
 const Person = mongoose.model("Person", personSchema)
 
-const person = new Person({
-  name: "John",
-  age: 25,
-  gender: "Male"
+const pineapple = new Fruit({
+  name: "Pineapple",
+  score: 8,
+  review: "It's good!"
 });
 
-//person.save();
+const person = new Person({
+  name: "Amy",
+  age: 45,
+  gender: "female",
+  favoriteFruit: pineapple
+});
+
+person.save();
 
 const kiwi = new Fruit({
   name: "Kiwi",
@@ -85,18 +93,18 @@ Fruit.find((err, fruits) => {
   }
 })
 
-Fruit.updateOne({ _id: "6383b1a07ebf2b29699566d9" }, { name: "Peach" }, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Name updated succesfully");
-  }
-})
+// Fruit.updateOne({ _id: "6383b1a07ebf2b29699566d9" }, { name: "Peach" }, (err) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Name updated succesfully");
+//   }
+// })
 
-Fruit.deleteOne({_id: "6383b1a07ebf2b29699566d9"}, (err)=>{
-  if(err){
-    console.log(err);
-  } else {
-    console.log("Deleted entry succesfully");
-  }
-});
+// Fruit.deleteOne({_id: "6383b1a07ebf2b29699566d9"}, (err)=>{
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log("Deleted entry succesfully");
+//   }
+// });
